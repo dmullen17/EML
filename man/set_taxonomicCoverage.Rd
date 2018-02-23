@@ -31,6 +31,7 @@ they specify is from high to low.
 Ex. "Kingdom","Phylum","Class","Order","Family","Genus","Species","Common"
 }
 \examples{
+\dontrun{
 taxon_coverage <-
  set_taxonomicCoverage(list(KINGDOM="Plantae",
                             PHYLUM="Phaeophyta",
@@ -59,4 +60,5 @@ taxon_coverage <- set_taxonomicCoverage(
   c("Macrocystis pyrifera"),
   expand = TRUE,
   db = 'gbif')
+  }
 }

@@ -151,6 +151,7 @@ set_temporalCoverage <-
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' taxon_coverage <-
 #'  set_taxonomicCoverage(list(KINGDOM="Plantae",
 #'                             PHYLUM="Phaeophyta",
@@ -180,6 +181,7 @@ set_temporalCoverage <-
 #'   c("Macrocystis pyrifera"),
 #'   expand = TRUE,
 #'   db = 'gbif')
+#'   }
 
 set_taxonomicCoverage <- function(sci_names, expand=FALSE, db = 'itis') {
   # Expand using taxize and ITIS if the user passes in just scientific names
