@@ -614,3 +614,20 @@ testthat::test_that("The set_attributes function stops if duplicate codes in fac
                                         col_classes = c("factor", "factor", "numeric")),
                          regex = "There are attributeName")
 })
+
+testthat::test_that("merge_df is equivalent to multiple 'merge' calls", {
+  A <- eml@dataset@dataTable[[1]]@attributeList@attribute
+  A <- unname(A) # avoid row-names 'attribute','attribute1' etc
+
+  column_meta <- column_attributes(A)
+  numerics <- numeric_attributes(A, eml)
+  chars <- char_attributes(A, eml)
+  datetimes <- datetime_attributes(A, eml)
+
+  attr_table <- merge(merge(merge(numerics, datetimes, all = TRUE),
+                            chars, all = TRUE), column_meta, all = TRUE)
+
+  test_table <- merge_df(list(numerics, datetimes, chars, column_meta))
+
+  testthat::expect_equal(attr_table, test_table)
+})
